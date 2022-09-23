@@ -1,4 +1,5 @@
 ﻿using Figgle;
+using System;
 
 namespace TopGear
 {
@@ -10,7 +11,42 @@ namespace TopGear
             bool playGame = OptionsMenu();
             if (playGame)
             {
-                // call PlayGame function
+                string car = "[]--o--[]";
+
+                int currentPosition = (Console.WindowWidth - car.Length) / 2;
+                ConsoleKeyInfo consoleKeyInfo;
+                bool exitGame = false;
+
+                do
+                {
+                    consoleKeyInfo = PrintCar(car, currentPosition);
+
+                    if (consoleKeyInfo.Key == ConsoleKey.LeftArrow)
+                    {
+                        currentPosition--;
+
+                        if(currentPosition < 0)
+                        {
+                            currentPosition = 0;
+                        }
+                    }
+                    else if (consoleKeyInfo.Key == ConsoleKey.RightArrow)
+                    {
+                        currentPosition++;
+
+                        if (currentPosition > Console.WindowWidth - car.Length)
+                        {
+                            currentPosition = Console.WindowWidth - car.Length;
+                        }
+                    }
+                    else if(consoleKeyInfo.Key == ConsoleKey.Escape)
+                    {
+                        exitGame = true;
+                    }
+
+                    //Console.Clear();
+
+                } while (!exitGame);
             }
         }
 
@@ -67,7 +103,7 @@ namespace TopGear
 
             do
             {
-                consoleKeyInfo = Print(options, currentOption);
+                consoleKeyInfo = PrintMenu(options, currentOption);
 
                 if (consoleKeyInfo.Key == ConsoleKey.DownArrow)
                 {
@@ -137,10 +173,14 @@ namespace TopGear
             return playGame;
         }
 
-        static ConsoleKeyInfo Print(List<string> options, int currentOption)
+        static ConsoleKeyInfo PrintMenu(List<string> options, int currentOption)
         {
             for (int i = 0; i < options.Count; i++)
             {
+                int leftPosition = Console.WindowWidth / 2 - options[i].Length / 2 - 1;
+                int topPosition = Console.WindowHeight / 2 - options.Count/2 + i;
+
+                Console.SetCursorPosition(leftPosition, topPosition);
                 if (i == currentOption)
                 {
                     Console.Write("->");
@@ -150,8 +190,26 @@ namespace TopGear
                     Console.Write("--");
                 }
 
-                Console.WriteLine(options[i]);
+                Console.Write(options[i]);
             }
+
+            return Console.ReadKey();
+        }
+
+        static int lastPosition = 0;
+
+        static ConsoleKeyInfo PrintCar(string car, int position)
+        {
+            for(int i = 0; i < car.Length; i++)
+            {
+                Console.SetCursorPosition(lastPosition + i, Console.WindowHeight - 5);
+                Console.Write(" ");
+            }
+
+            lastPosition = position;
+
+            Console.SetCursorPosition(position, Console.WindowHeight - 5);
+            Console.Write(car);
 
             return Console.ReadKey();
         }

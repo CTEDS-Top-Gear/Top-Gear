@@ -5,14 +5,14 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
-            race();
-            Console.WriteLine("|          |");
-            Console.WriteLine("|   |--|   |");
-            Console.WriteLine("|          |");
-        }
+        //static void Main(string[] args)
+        //{
+        //    //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
+        //    race();
+        //    Console.WriteLine("|          |");
+        //    Console.WriteLine("|   |--|   |");
+        //    Console.WriteLine("|          |");
+        //}
 
         public static void race()
         {
