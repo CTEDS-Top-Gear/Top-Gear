@@ -5,44 +5,40 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
-        //    race();
+        static void Main(string[] args)
+        {
+            //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
+            race();
 
-        //}
+        }
 
         public static void race()
         {
-            List<int> queue = new List<int>();
-            initial(queue, (Console.WindowWidth - 10) / 2);
+            Random rnd = new Random();
 
-            for (int i = queue.Count - 1; i >= 0; i--)
+            List<int> list = new List<int>();
+            int posicaoPista = (Console.WindowWidth - 20) / 2;
+            int timer = 1000;
+
+            initial(list, posicaoPista);
+
+            string pista = "|                    |";
+
+            while (true)
             {
-                Console.WriteLine(queue[i]);
+                System.Threading.Thread.Sleep(timer);
+
+                Console.Clear();
+
+                for (int i = 0; i < list.Count ; i++)
+                {
+                    Console.SetCursorPosition(list[i], Console.CursorTop);
+                    Console.WriteLine(pista);
+                }
+
+                ImprimePista(list, rnd.Next(3));
+
             }
-
-            //foreach (string i in queue)
-            //{
-            //    Console.WriteLine(i);
-            //}
-
-            //int racePosition = (Console.WindowWidth - queue[0].Length) / 2;
-
-            //while (true)
-            //{
-            //    System.Threading.Thread.Sleep(timer);
-
-            //    Console.Clear();
-
-            //    queue.RemoveAt(9);
-            //    queue.Insert(0, "a");
-
-            //    foreach (var item in queue)
-            //    {
-            //        Console.WriteLine(item);
-            //    }
-            //}
 
 
         }
@@ -55,12 +51,30 @@ namespace ConsoleApp1
             }
         }
 
-        public static void printTrack()
+        public static void ImprimePista(List<int> lista, int random)
         {
-            while (true)
-            {
+            int posicao = lista[0];
 
+            if (random == 0)
+            {
+                lista.RemoveAt(9);
+                lista.Insert(0, posicao);
+                return;
             }
+            else if (random == 1)
+            {
+                lista.RemoveAt(9);
+                lista.Insert(0, posicao + 1);
+                return;
+            }
+            else
+            {
+                lista.RemoveAt(9);
+                lista.Insert(0, posicao - 1);
+                return;
+            }
+           
+           
         }
     }
 }
