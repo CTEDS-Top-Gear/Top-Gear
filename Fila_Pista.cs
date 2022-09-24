@@ -5,43 +5,62 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
-            race();
-            Console.WriteLine("|          |");
-            Console.WriteLine("|   |--|   |");
-            Console.WriteLine("|          |");
-        }
+        //static void Main(string[] args)
+        //{
+        //    //Console.WriteLine("                               %  #%%%%%%%%%%%/ .%                              \r\n                              &&%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                           /&&%%%%.           ,%%%(&%.                          \r\n                              &(%              *%%(                             \r\n                              %/ %(           %/ %(                             \r\n                              %/  ,%%%%%%%%%%%   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/   %%%%%%%%%%#   %(                             \r\n                              %/ .%  .,//*,  #%  %(                             \r\n                              %%%              *%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                              &%%%%%%%%%%%%%%%%%%%(                             \r\n                               %%&&%&%%%%%%%%%&%&#");
+        //    race();
+
+        //}
 
         public static void race()
         {
-            ArrayList list = new ArrayList();
-            int timer = 1000;
+            List<int> queue = new List<int>();
+            initial(queue, (Console.WindowWidth - 10) / 2);
 
-            while (true)
+            for (int i = queue.Count - 1; i >= 0; i--)
             {
-
-                if (list.Count < 50)
-                {
-                    line(list);
-                }
-
-                System.Threading.Thread.Sleep(timer);
-
+                Console.WriteLine(queue[i]);
             }
 
-           
-        }  
+            //foreach (string i in queue)
+            //{
+            //    Console.WriteLine(i);
+            //}
 
-        public static void line(ArrayList a)
+            //int racePosition = (Console.WindowWidth - queue[0].Length) / 2;
+
+            //while (true)
+            //{
+            //    System.Threading.Thread.Sleep(timer);
+
+            //    Console.Clear();
+
+            //    queue.RemoveAt(9);
+            //    queue.Insert(0, "a");
+
+            //    foreach (var item in queue)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+            //}
+
+
+        }
+
+        public static void initial(List<int> lista, int racePosition)
         {
             for (int i = 0; i < 10; i++)
             {
-                a.Add("|           |");
+                lista.Add(racePosition);
             }
         }
 
+        public static void printTrack()
+        {
+            while (true)
+            {
 
+            }
+        }
     }
 }
