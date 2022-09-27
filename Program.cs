@@ -1,55 +1,57 @@
 ﻿using Figgle;
+using System.Diagnostics;
 
-namespace TopGear
-{
-    internal class Program
+namespace TopGear;
+    public class Program
     {
         static void Main(string[] args)
         {
+           
             PresentationMenu();
             bool playGame = OptionsMenu();
             if (playGame)
-            {
-                string car = "[]--o--[]";
+                 Pista.race();
+        //{
+        //    string car = "[]--o--[]";
 
-                int currentPosition = (Console.WindowWidth - car.Length) / 2;
-                ConsoleKeyInfo consoleKeyInfo;
-                bool exitGame = false;
+        //    int currentPosition = (Console.WindowWidth - car.Length) / 2;
+        //    ConsoleKeyInfo consoleKeyInfo;
+        //    bool exitGame = false;
 
-                do
-                {
-                    consoleKeyInfo = PrintCar(car, currentPosition);
+        //    do
+        //    {
+        //        consoleKeyInfo = PrintCar(car, currentPosition);
 
-                    if (consoleKeyInfo.Key == ConsoleKey.LeftArrow)
-                    {
-                        currentPosition--;
+        //        if (consoleKeyInfo.Key == ConsoleKey.LeftArrow)
+        //        {
+        //            currentPosition--;
 
-                        if (currentPosition < 0)
-                        {
-                            currentPosition = 0;
-                        }
-                    }
-                    else if (consoleKeyInfo.Key == ConsoleKey.RightArrow)
-                    {
-                        currentPosition++;
+        //            if(currentPosition < 0)
+        //            {
+        //                currentPosition = 0;
+        //            }
+        //        }
+        //        else if (consoleKeyInfo.Key == ConsoleKey.RightArrow)
+        //        {
+        //            currentPosition++;
 
-                        if (currentPosition > Console.WindowWidth - car.Length)
-                        {
-                            currentPosition = Console.WindowWidth - car.Length;
-                        }
-                    }
-                    else if (consoleKeyInfo.Key == ConsoleKey.Escape)
-                    {
-                        exitGame = true;
-                    }
+        //            if (currentPosition > Console.WindowWidth - car.Length)
+        //            {
+        //                currentPosition = Console.WindowWidth - car.Length;
+        //            }
+        //        }
+        //        else if(consoleKeyInfo.Key == ConsoleKey.Escape)
+        //        {
+        //            exitGame = true;
+        //        }
 
-                    //Console.Clear();
+        //        //Console.Clear();
 
-                } while (!exitGame);
-            }
-        }
+        //    } while (!exitGame);
+        //}
+    }
 
-        static void PresentationMenu()
+        static void PresentationMenu() 
         {
             Console.WriteLine(FiggleFonts.Computer.Render("                  Top Gear"));
 
@@ -65,7 +67,7 @@ namespace TopGear
             "                   V__________: \\        / :_|=======================/_____: \\        / :__-\"\r\n" +
             "                   -----------'  \"-____-\"  `-------------------------------'  \"-____-\"");
             Console.ResetColor();
-
+            
             Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
             string s = "Press any button to start";
             Console.SetCursorPosition((Console.WindowWidth - s.Length) / 2, Console.CursorTop);
@@ -159,7 +161,7 @@ namespace TopGear
                 }
                 else if (options[currentOption] == "Exit")
                 {
-                    if (consoleKeyInfo.Key == ConsoleKey.Enter)
+                    if(consoleKeyInfo.Key == ConsoleKey.Enter)
                     {
                         exitMenu = true;
                     }
@@ -177,7 +179,7 @@ namespace TopGear
             for (int i = 0; i < options.Count; i++)
             {
                 int leftPosition = Console.WindowWidth / 2 - options[i].Length / 2 - 1;
-                int topPosition = Console.WindowHeight / 2 - options.Count / 2 + i;
+                int topPosition = Console.WindowHeight / 2 - options.Count/2 + i;
 
                 Console.SetCursorPosition(leftPosition, topPosition);
                 if (i == currentOption)
@@ -197,20 +199,24 @@ namespace TopGear
 
         static int lastPosition = 0;
 
-        static ConsoleKeyInfo PrintCar(string car, int position)
+        public static bool PrintCar(string car, int position)
+        {
+            
+        if (lastPosition != position)
         {
             for (int i = 0; i < car.Length; i++)
             {
-                Console.SetCursorPosition(lastPosition + i, Console.WindowHeight - 5);
+                Console.SetCursorPosition(lastPosition + i, 9);
                 Console.Write(" ");
             }
 
             lastPosition = position;
 
-            Console.SetCursorPosition(position, Console.WindowHeight - 5);
-            Console.Write(car);
+            Console.SetCursorPosition(position, 9);
 
-            return Console.ReadKey();
+            Console.Write(car);
+        }
+
+        return Console.KeyAvailable;
         }
     }
-}

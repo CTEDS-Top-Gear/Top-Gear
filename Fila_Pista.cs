@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace ConsoleApp1
+namespace TopGear
 {
-    internal class Program
+    public class Pista
     {
 
         public static void race()
@@ -12,15 +14,54 @@ namespace ConsoleApp1
 
             List<int> list = new List<int>();
             int posicaoPista = (Console.WindowWidth - 20) / 2;
-            int timer = 1000;
+            int timer = 100;
 
             initial(list, posicaoPista);
 
             string pista = "|                    |";
+            string car = "[]--o--[]";
+
+            int currentPosition = (Console.WindowWidth - car.Length) / 2;
+            ConsoleKeyInfo consoleKeyInfo;
+            bool exitGame = false;
 
             while (true)
             {
-                System.Threading.Thread.Sleep(timer);
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                while (stopwatch.ElapsedMilliseconds < timer)
+                {
+                    if (Program.PrintCar(car, currentPosition))
+                    {
+                        consoleKeyInfo = Console.ReadKey();
+
+                        if (consoleKeyInfo.Key == ConsoleKey.LeftArrow)
+                        {
+                            currentPosition--;
+
+                            if (currentPosition < 0)
+                            {
+                                currentPosition = 0;
+                            }
+                        }
+                        else if (consoleKeyInfo.Key == ConsoleKey.RightArrow)
+                        {
+                            currentPosition++;
+
+                            if (currentPosition > Console.WindowWidth - car.Length)
+                            {
+                                currentPosition = Console.WindowWidth - car.Length;
+                            }
+                        }
+                        else if (consoleKeyInfo.Key == ConsoleKey.Escape)
+                        {
+                            exitGame = true;
+                        }
+
+                    }
+
+                    //Console.Clear();
+                }
 
                 Console.Clear();
 
@@ -29,6 +70,7 @@ namespace ConsoleApp1
                     Console.SetCursorPosition(list[i], Console.CursorTop);
                     Console.WriteLine(pista);
                 }
+
 
                 ImprimePista(list, rnd.Next(3));
 
